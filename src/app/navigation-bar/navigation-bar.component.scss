@@ -1,0 +1,28 @@
+.navigation-bar {
+    height: 48px;
+    background-color: #0288D1;
+    margin-bottom: 20px;
+}
+
+.navigation-link {
+    height: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+
+}
+
+.navigation-link:hover {
+    cursor: pointer;
+}
+
+.navigation-link-active {
+    height: 100%;
+    background-color: #01579B;
+}
+
+.menu-item-active {
+    color: #0288D1;
+}

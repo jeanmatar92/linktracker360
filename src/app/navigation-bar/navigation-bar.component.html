@@ -1,0 +1,54 @@
+<div *ngIf="isMobile || isTablet" class="navigation-bar container-fluid">
+    <div class="row" style="height: 100%;">
+        <div class="col-1 d-flex justify-content-start" style="width: auto;">
+            <div class="navigation-link" routerLink="" routerLinkActive="navigation-link-active" [routerLinkActiveOptions]="{ exact: true }">
+                <img src="../../assets/LogoAppBar.png" width="134" height="47" />
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+                <mat-icon style="color: white;" fontIcon="menu"></mat-icon>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="" routerLinkActive="menu-item-active" [routerLinkActiveOptions]="{ exact: true }">Home</button>
+                    <button mat-menu-item routerLink="singlelinktracker" routerLinkActive="menu-item-active">Single Link Tracker</button>
+                    <button mat-menu-item routerLink="multiplelinkstracker" routerLinkActive="menu-item-active">Multiple Links Tracker</button>
+                    <button mat-menu-item routerLink="cm360clicktags" routerLinkActive="menu-item-active">CM360 Click Tags Tracker</button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item routerLink="statuscodes" routerLinkActive="menu-item-active">Status Codes</button>
+                    <button mat-menu-item routerLink="about" routerLinkActive="menu-item-active">About</button>
+                </mat-menu>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isMobile && !isTablet" class="navigation-bar container-fluid">
+    <div class="row" style="height: 100%;">
+        <div class="col-9 d-flex">
+            <div class="d-flex align align-items-center" style="width: 100%;">
+                <div class="navigation-link" routerLink="" routerLinkActive="navigation-link-active" [routerLinkActiveOptions]="{ exact: true }">
+                    <img src="../../assets/LogoAppBar.png" width="134" height="47" />
+                </div>
+                <div class="navigation-link" routerLink="singlelinktracker" routerLinkActive="navigation-link-active">
+                    Single Link tracker
+                </div>
+                <div class="navigation-link" routerLink="multiplelinkstracker" routerLinkActive="navigation-link-active">
+                    Multiple Links Tracker
+                </div>
+                <div class="navigation-link" routerLink="cm360clicktags" routerLinkActive="navigation-link-active">
+                    CM360 Click Tags Tracker
+                </div>
+            </div>
+        </div>
+        <div class="col-3 d-flex">
+            <div class="d-flex justify-content-end align-items-center" style="width: 100%;">
+                <div class="navigation-link" routerLink="statuscodes" routerLinkActive="navigation-link-active">
+                    Status Codes
+                </div>
+                <div class="navigation-link" routerLink="about" routerLinkActive="navigation-link-active">
+                    About
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

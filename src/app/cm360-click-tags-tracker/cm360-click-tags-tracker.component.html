@@ -1,0 +1,89 @@
+<div class="container">
+    <div *ngIf="!isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="4905587211"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="728"
+            [height]="90"
+        ></ng-adsense>
+    </div>
+    <div *ngIf="isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="5688839479"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="320"
+            [height]="50"
+        ></ng-adsense>
+    </div>
+
+    <h1>Campaign Manager 360 Click Tags Tracker</h1>
+    <p style="text-align: justify;">
+        This tool reads click tags in the tracking ads template exported from CM360, and gets the final landing pages 
+        automatically (last redirection). It is great for digital marketers who use CM360 to manage their ad campaigns. 
+        If you use a different ad server than CM360, you can use "Multiple Links Tracker" tool which fulfills your needs.
+    </p>
+
+    <div *ngIf="isMobile" class="device-info">
+        <div class="container">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="info" style="font-size: 72px; width: 72px; height: 72px; color: #0288D1;"></mat-icon>
+            <div class="device-info-text"> This tool is not available on mobiles</div>
+        </div>
+    </div>
+
+    <div *ngIf="!isMobile">
+        <div class="d-flex">
+            <div *ngIf="!selectedFile" class="dropzone" appDrag (files)="filesDropped($event)">
+                <div class="container">
+                    <input type="file" id="fileInput" accept=".xls, .xlsx, .xlsm" (change)="onFileSelected($event)">
+                    <label for="fileInput">
+                        <div>
+                            <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="upload_file" style="font-size: 72px; width: 72px; height: 72px; color: #0288D1;"></mat-icon>
+                            <div class="dropzone-text">Click to browse or drag your file here</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div *ngIf="selectedFile" class="dropzone">
+                <div class="container">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="description" style="font-size: 72px; width: 72px; height: 72px; color: #0288D1;"></mat-icon>
+                    <div class="dropzone-text">{{ selectedFile.name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="listOfInitialUrls.length > 0 && !parsing && !ended"class="d-flex justify-content-end mt-2">
+        <button mat-flat-button color="primary" class="ms-1" (click)="getLandingPages()">Get Landing Pages</button>
+        <button mat-flat-button color="primary" class="ms-1" (click)="clear()">Clear</button>
+    </div>
+
+    <div *ngIf="listOfLandingPages.length > 0 && !isError" class="d-flex justify-content-end mt-2">
+        <button mat-flat-button color="primary" class="ms-1" (click)="downloadUpdatedTemplate()">Download Updated Tracking Sheet</button>
+    </div>    
+
+    <mat-progress-bar *ngIf="loadingFile || parsing" mode="indeterminate" class="mt-4 mb-4"></mat-progress-bar>
+
+    <div *ngIf="listOfInitialUrls.length > 0" class="mt-2">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Click tags from template ({{ listOfInitialUrls.length }})</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let url of listOfInitialUrls">
+                    <tr>
+                        <td>{{ url }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

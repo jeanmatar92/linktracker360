@@ -1,0 +1,95 @@
+<div class="container">
+    <div *ngIf="!isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="4905587211"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="728"
+            [height]="90"
+        ></ng-adsense>
+    </div>
+    <div *ngIf="isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="5688839479"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="320"
+            [height]="50"
+        ></ng-adsense>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h1>About LinkTracker360</h1>
+            <p class="about-text">
+                At LinkTracker360, we are dedicated to simplifying and enhancing the link tracking experience for professionals in the 
+                digital advertising field as well as developers. Our application serves as a trusted companion to those working in media 
+                buying, ad serving, and web development.
+            </p>
+            <p class="about-text">
+                The inspiration behind LinkTracker360 arose from our own experiences within the digital advertising industry and the 
+                challenges we encountered when it came to tracking and verifying links. We understood the importance of accurate link 
+                tracking for campaign optimization, source verification, and audience targeting. We also recognized the need to provide 
+                developers with a reliable tool to ensure the proper functionality of their website links.
+            </p>
+            <p class="about-text">
+                Driven by these insights, we set out to develop an application that would revolutionize link tracking for both digital 
+                advertising professionals and developers. Through meticulous research, extensive testing, and invaluable feedback from 
+                industry experts, LinkTracker360 was born.
+            </p>
+            <p class="about-text">
+                LinkTracker360 serves as your comprehensive link tracking solution, meticulously designed to empower professionals in the 
+                digital advertising landscape and developers alike. With its powerful features, you can effortlessly track links, check 
+                redirections, and gain insights into the final landing pages behind them. We have also integrated the ability to read 
+                click tags from Campaign Manager 360 (CM360) for seamless integration with your ad campaigns.
+            </p>
+            <p class="about-text">
+                For digital advertising professionals, LinkTracker360 provides a streamlined and user-friendly tool to optimize marketing 
+                campaigns, verify sources, and significantly increase efficiency and productivity. With the ability to track multiple 
+                links simultaneously, you can save valuable time and effort, allowing you to focus on other critical aspects of your 
+                campaigns. LinkTracker360 empowers you to effortlessly check redirections, gain insights into final landing pages, and 
+                ensure the accuracy of your link tracking.
+            </p>
+            <p class="about-text">
+                For developers, LinkTracker360 becomes an indispensable asset to ensure the functionality and accuracy of website links. 
+                Easily check redirections, diagnose any issues, and maintain the integrity of your web applications.
+            </p>
+            <p class="about-text">
+                Experience the convenience, accuracy, and efficiency LinkTracker360 brings to your link tracking endeavors. We are 
+                committed to continuous improvement and will continue to refine and enhance LinkTracker360 to meet your evolving needs.
+            </p>
+            <p class="about-text">
+                Welcome to LinkTracker360 – your ultimate link tracking solution, ensuring seamless tracking of your links from A to Z.
+            </p>
+        </div>
+        <div class="col-1" style="width: auto;">
+            <div class="ads-box">
+                <span style="font-size: 12px;">Advertisements</span>
+                <div style="margin-bottom: 10px;">
+                    <ng-adsense
+                        [adClient]="'ca-pub-9589898753512701'"
+                        [adSlot]="1964382732"
+                        [display]="'inline-block'"
+                        [adFormat]="'inline'"
+                        [width]="300"
+                        [height]="250"
+                    ></ng-adsense>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <ng-adsense
+                        [adClient]="'ca-pub-9589898753512701'"
+                        [adSlot]="5688839479"
+                        [display]="'inline-block'"
+                        [adFormat]="'inline'"
+                        [width]="300"
+                        [height]="250"
+                    ></ng-adsense>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

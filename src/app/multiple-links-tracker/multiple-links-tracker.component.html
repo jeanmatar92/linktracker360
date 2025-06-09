@@ -1,0 +1,115 @@
+<div class="container">
+    <div *ngIf="!isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="4905587211"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="728"
+            [height]="90"
+        ></ng-adsense>
+    </div>
+    <div *ngIf="isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="5688839479"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="320"
+            [height]="50"
+        ></ng-adsense>
+    </div>
+
+    <h1>Multiple Links Tracker</h1>
+    <p>
+        This tool checks the redirection of a list of links simultaneously. This means that you can upload a list 
+        of links and our tool will automatically check them and return the final landing pages behind them.
+    </p>
+
+    <div *ngIf="isMobile" class="device-info">
+        <div class="container">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="info" style="font-size: 72px; width: 72px; height: 72px; color: #0288D1;"></mat-icon>
+            <div class="device-info-text"> This tool is not available on mobiles</div>
+        </div>
+    </div>
+
+    <div *ngIf="!isMobile">
+        <form (ngSubmit)="addUrl(userUrl)">
+            <div class="row">
+                <div class="col pe-0">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Website URL</mat-label>
+                        <input matInput placeholder="https://..." style="border-radius: 0;" name="userUrl" [(ngModel)]="userUrl">
+                    </mat-form-field>
+                </div>
+                <div class="col-2 ps-0" style="width: auto;">
+                    <button mat-flat-button color="primary" class="add-url-button" type="submit" [disabled]="addButtonDisabled">Add URL</button>
+                </div>
+            </div>
+        </form>
+    
+        <div *ngIf="listOfUrls.length == 0 && tableElements.length == 0"class="d-flex justify-content-start">
+            <button mat-stroked-button color="primary" class="me-1" type="button" (click)="downloadTemplate()">Download Template</button>
+            <button mat-stroked-button color="primary" class="me-1" type="button" (click)="showUploadDialog = true">Upload Bulk</button>
+            <button mat-stroked-button color="primary" class="me-1" type="button" (click)="btnHelp()">Help</button>
+        </div>
+    </div>
+
+    <!-- To display the list of added urls -->
+    <div *ngIf="listOfUrls.length > 0 && tableElements.length == 0" class="mt-3">
+        <div *ngFor="let url of listOfUrls; index as i">
+            <div class="url-card">
+                <div class="url-card-close">
+                    <button mat-icon-button color="primary" (click)="removeUrl(i)" [disabled]="removeButtonDisabled">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+                    </button>
+                </div>
+                {{ url }}
+            </div>
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <button mat-flat-button color="primary"
+                (click)="getLandingPages(listOfUrls)"
+                [disabled]="getLandingPagesButtonDisabled">
+                Get Landing Pages
+            </button>
+        </div>
+    </div>
+
+    <mat-progress-bar *ngIf="parsing && !isError" mode="indeterminate" class="mt-3"></mat-progress-bar>
+
+    <!-- To show the url couples in the table -->
+    <div *ngIf="tableElements.length > 0 && !isError && !parsing" class="mt-3">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Initial URL</th>
+                        <th>Final Landing Page</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let element of tableElements">
+                    <tr>
+                        <td>{{ element.initialUrl }}</td>
+                        <td>{{ element.finalLandingPage }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <button mat-flat-button color="primary"
+                (click)="exportResults(tableElements)">
+                Export Results
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-bulk-upload-dialog
+    *ngIf="showUploadDialog"
+    (onCancel)="showUploadDialog = false"
+    (onUpload)="handleUpload($event)"
+    [@fadeInOut]>
+</app-bulk-upload-dialog>

@@ -1,0 +1,81 @@
+<div class="container">
+    <div *ngIf="!isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="4905587211"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="728"
+            [height]="90"
+        ></ng-adsense>
+    </div>
+    <div *ngIf="isMobile" class="ads-box">
+        <span style="font-size: 12px;">Advertisements</span>
+        <ng-adsense
+            [adClient]="'ca-pub-9589898753512701'"
+            [adSlot]="5688839479"
+            [display]="'inline-block'"
+            [adFormat]="'inline'"
+            [width]="320"
+            [height]="50"
+        ></ng-adsense>
+    </div>
+
+    <h1>Single Link Tracker</h1>
+    <p>
+        This tool checks a single link and tracks all its redirections from starting point until the final destination.
+    </p>
+
+    <form (ngSubmit)="getRedirections(userUrl!)" class="mb-3">
+        <div class="row">
+            <div class="col pe-0">
+                <mat-form-field style="width: 100%; margin-bottom: 0;">
+                    <mat-label>Website URL</mat-label>
+                    <input matInput placeholder="https://..." style="border-radius: 0;" name="userUrl" [(ngModel)]="userUrl">
+                </mat-form-field>
+            </div>
+            <div class="col-2 ps-0" style="width: auto;">
+                <button mat-flat-button color="primary" class="track-url-button" type="submit">Track URL</button>
+            </div>
+        </div>
+    </form>
+
+    <mat-progress-bar *ngIf="parsing && !isError" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="redirectionData.length > 0 && !isError">
+        <app-redirection-card 
+            [isInitialUrl]="true"
+            [hasRedirection]="false"
+            [url]="initialUrl">
+        </app-redirection-card>
+
+        <app-redirection-card *ngFor="let item of redirectionData"
+            [statusCodeNumber]="item.statusCodeNumber"
+            [statusCodeName]="item.statusCodeName"
+            [url]="item.redirectionDestination">
+        </app-redirection-card>
+
+        <app-redirection-card 
+            [hasFollowerCard]="false"
+            [hasRedirection]="false"
+            [statusCodeNumber]="lastStatusCodeNumber"
+            [statusCodeName]="lastStatusCodeName">
+        </app-redirection-card>
+    </div>
+
+    <div *ngIf="ended && redirectionData.length == 0 && !isError">
+        <app-redirection-card 
+            [isInitialUrl]="true"
+            [hasRedirection]="false"
+            [url]="initialUrl">
+        </app-redirection-card>
+
+        <app-redirection-card 
+            [hasFollowerCard]="false"
+            [hasRedirection]="false"
+            [statusCodeNumber]="lastStatusCodeNumber"
+            [statusCodeName]="lastStatusCodeName">
+        </app-redirection-card>
+    </div>
+</div>
