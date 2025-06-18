@@ -112,7 +112,7 @@ export class Cm360ClickTagsTrackerComponent {
 
     ExcelUtility.load(this.selectedFile).then((wb) => {
       let updatedTemplate = this.spreadsheetTools.createUpdatedCm360Template(wb, this.listOfLandingPages, this.headersRowIndex!);
-      let fileNameWithoutExtension = '[With LP] ' + this.selectedFile!.name.split('.')[0];
+      let fileNameWithoutExtension = 'LP_' + this.selectedFile!.name.split('.')[0];
       ExcelUtility.save(updatedTemplate, fileNameWithoutExtension);
     }, (e) => {
       console.log('Workbook not loaded');
